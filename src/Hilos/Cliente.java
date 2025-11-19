@@ -16,13 +16,21 @@ public class Cliente implements Runnable {
     @Override
     public void run() {
         try {
+            //El cliente intenta adquirir un boleto
             int boletoComprado = taquilla.venderBoleto();
-            System.out.println(nombre + " compró el boleto número: " + boletoComprado);
+            System.out.println(nombre + " compro el boleto numero: " + boletoComprado);
             Thread.sleep(3000);
+
+            // de manera aleatoria devuelve o utiliza el boleto que se ha adquirido
+
+            //Se devuelve el voleto
             if (random.nextBoolean()) { 
                 taquilla.reponerBoleto(boletoComprado);
-            } else {
-                System.out.println(nombre + " usó su boleto " + boletoComprado + " y disfrutó el paseo.");
+                System.out.println(nombre + " devolvio el boleto "+ boletoComprado);
+            } 
+            //El boleto es usado
+            else {
+                System.out.println(nombre + " uso su boleto " + boletoComprado);
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
